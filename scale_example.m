@@ -1,4 +1,16 @@
 function scale_example(N)
+% SCALE_EXAMPLE  demonstrate automated scaling of Simulink model
+%
+%   SCALE_EXAMPLE produces an 18-agent simulation based on the template
+%   model 'single_example.slx'
+%
+%   SCALE_EXAMPLE(N) produces an N-agent simulation
+%
+% This scaling script uses SCALE_SIMULINK_MODEL to create the N-agent model
+% and then connects various other blocks to the new inputs and outputs.
+%
+% See also SCALE_SIMULINK_MODEL CONNECT_COMMON_INPUT CONNECT_DEMUX_INPUT
+% CONNECT_MUX_OUTPUT
 
 if nargin<1
     N = 18

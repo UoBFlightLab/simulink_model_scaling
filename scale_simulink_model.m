@@ -1,4 +1,32 @@
 function flag = scale_simulink_model(block_name,N,common_inputs,demux_inputs,mux_outputs)
+% SCALE_SIMULINK_MODEL Create a multi-agent Simulink model by scaling up a single-agent template
+% 
+%   flag = SCALE_SIMULINK_MODEL(block_name,N,common_inputs,demux_inputs,mux_outputs)
+% 
+% The currently open model (from GCS) will be used as the template.  A new 
+% model will be created for the output.  Block 'block_name' will be 
+% replicated N times.  Inputs listed (by index number) in 'common_inputs'
+% will all be connected together to the output of a 'gain' block.  Inputs
+% listed in 'demux_inputs' will be connected to the output ports of a
+% demultiplexer.  Outputs listed in 'mux_outputs' will be connected to the
+% input ports of a multiplexer.
+% 
+% Example: SCALE_SIMULINK_BLOCK('dynamics',12,[1],[3],[6]) creates a new
+% model with 12 copies of the 'dynamics' block from the current system.
+% A new gain block will be created in the model, feeding into the first
+% input of every new dynamics block.  A new 12-way demultiplexer block will be
+% added with each output connected to the third input of its respective
+% dynamics block.  The sixth output of each dynamics block will be
+% connected to the corresponding input of a new 12-way multiplexr block.
+% 
+% The 'gain' block is a pass-through placeholder for connecting to a new 
+% common input.
+% 
+% It is anticipated that this function is used within a larger build script,
+% which also adds extra blocks and plumbing in the multi-agent simulation.
+%
+% See also SCALE_EXAMPLE GCS ADD_BLOCK ADD_LINE
+
 
 flag = 0;
 
